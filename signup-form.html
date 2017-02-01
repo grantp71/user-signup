@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+              .error {
+                  color: red;
+              }
+          </style>
+  </head>
+  <body>
+    <h1>Signup</h1>
+    <form method="post">
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <label for = "username">Username</label>
+            </td>
+            <td>
+              <input name="username" type="text" required>
+              <span class="error"></span></td>
+          </tr>
+          <tr>
+            <td>
+              <label for ="password">Password</label>
+            </td>
+            <td>
+              <input name="password" type="password" required>
+              <span class="error"></span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for ="verify">Verify Password</label>
+            </td>
+            <td>
+              <input name="verify" type="verify" required>
+              <span class="error"></span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for ="email">Email (optional)</label>
+            </td>
+            <td>
+              <input name="email" type="email" value>
+              <span class="error"></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <input type="submit">
+    </form>
+  </body>
+</html>
