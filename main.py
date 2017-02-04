@@ -1,3 +1,7 @@
+import os
+import re
+from string import letters
+
 import webapp2
 import jinja2
 
@@ -6,6 +10,7 @@ from google.appengine.ext import db
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env = jinja2.Environment(loader = jinja2.FlieSystemLoader(template_dir),
                                 autoescape = True)
+
 def render_str(template, **params):
     t = jinja_env.get_template(template)
     return t.render(params)
@@ -72,9 +77,6 @@ class Welcome(BaseHandler):
         else:
             self.redirect('/user-signup/signup')
 
-class MainHandler(webapp2.RequestHandler):
-    def get(self):
-        self.response.write('Hello world!')
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
