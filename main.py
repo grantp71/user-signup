@@ -8,7 +8,7 @@ import jinja2
 from google.appengine.ext import db
 
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
-jinja_env = jinja2.Environment(loader = jinja2.FlieSystemLoader(template_dir),
+jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
                                 autoescape = True)
 
 def render_str(template, **params):
@@ -21,6 +21,19 @@ class BaseHandler(webapp2.RequestHandler):
 
     def write(self, *a, **kw):
         self.response.out.write(*a, **kw)
+
+### ROT13 IS HERE IN THE SOLUTION FILE
+
+
+
+
+
+
+
+
+
+
+
 
 USER_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")      #a username a through z zero through nine with a length between three to twenty characters
 def valid_username(username):
@@ -57,7 +70,7 @@ class Signup(BaseHandler):
             params['error_password'] = "The password entered is not valid.."
             have_error = True
         elif password != verify:
-            params['error_verify'] = "The second password entered does not match.."
+            params['error_verify'] = "The passwords entered do not match.."
             have_error = True
 
         if not valid_email(email):
@@ -78,9 +91,6 @@ class Welcome(BaseHandler):
             self.redirect('/user-signup/signup')
 
 
-app = webapp2.WSGIApplication([
-    ('/', MainHandler)
-], debug=True)
-app = webapp2.WSGIApplication( [('/user-signup/signup', Signup)
-                                ('/user-signup/welcome', Welcome)],
+app = webapp2.WSGIApplication([('/user-signup/signup', Signup),
+                               ('/user-signup/welcome', Welcome)],
                               debug = True)
